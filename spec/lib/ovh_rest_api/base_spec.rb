@@ -38,4 +38,26 @@ describe OvhRestApi::Base do
         }
     ) }
   end
+  
+  context "when requesting get url" do
+    before do
+      @timestamp = Time.new 2013, 12, 15, 19, 8, 00, "+02:00"
+      Time.stub(:now).and_return @timestamp
+      stub_request(:get, "https://eu.api.ovh.com/1.0https://eu.api.ovh.com/1.0/domains/")
+            .with(headers: {
+              'Accept'=>'*/*', 
+              'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'Content-Type'=>'application/json', 
+              'User-Agent'=>'Ruby', 
+              'X-Ovh-Application'=>'7kbG7Bk7S9Nt7ZSV', 
+              'X-Ovh-Consumer'=>'MtSwSrPpNjqfVSmJhLbPyr2i45lSwPU1', 
+              'X-Ovh-Signature'=>'$1$94a2cce12ac7401b2ec29f90e011d3b19a87ea6a', 
+              'X-Ovh-Timestamp'=>'1387127280'})
+          .to_return(status: 200, body: '["ovh.com","ovh.net"]', headers: {})
+    end
+    
+    it { expect(OvhRestApi::Base.new(:eu, "7kbG7Bk7S9Nt7ZSV", "EXEgWIz07P0HYwtQDs7cNIqCiQaWSuHF", "MtSwSrPpNjqfVSmJhLbPyr2i45lSwPU1")
+        .get("https://eu.api.ovh.com/1.0/domains/")).to eq(["ovh.com","ovh.net"])
+      }
+  end
 end
