@@ -1,6 +1,6 @@
 # OvhRestApi
 
-TODO: Write a gem description
+This is a gem to interact with OVH RESFTULL API 1.0
 
 ## Installation
 
@@ -23,7 +23,8 @@ TODO: Write usage instructions here
 ## Contributing
 
 1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+2. run "rake" to test
+3. Create your feature branch (`git checkout -b my-new-feature`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
