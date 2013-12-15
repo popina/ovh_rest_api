@@ -15,6 +15,27 @@ describe OvhRestApi::Base do
   end
   
   describe "#request_signature" do
-    it { expect(OvhRestApi::Base.new(:eu, "7kbG7Bk7S9Nt7ZSV", "EXEgWIz07P0HYwtQDs7cNIqCiQaWSuHF", "MtSwSrPpNjqfVSmJhLbPyr2i45lSwPU1").send :request_signature, "get", "https://eu.api.ovh.com/1.0/domains/", "", 1366560945).to eq("$1$d3705e8afb27a0d2970a322b96550abfc67bb798") }
+    it { expect(OvhRestApi::Base.new(:eu, "7kbG7Bk7S9Nt7ZSV", 
+      "EXEgWIz07P0HYwtQDs7cNIqCiQaWSuHF", "MtSwSrPpNjqfVSmJhLbPyr2i45lSwPU1")
+      .send :request_signature, "get", "https://eu.api.ovh.com/1.0/domains/", "", 1366560945)
+      .to eq("$1$d3705e8afb27a0d2970a322b96550abfc67bb798") }
+  end
+  
+  describe "#request_signature" do
+    before do
+      @timestamp = Time.new 2013, 12, 15, 19, 8, 00, "+02:00"
+      Time.stub(:now).and_return @timestamp
+    end
+    it { expect(OvhRestApi::Base.new(:eu, "7kbG7Bk7S9Nt7ZSV", "EXEgWIz07P0HYwtQDs7cNIqCiQaWSuHF", "MtSwSrPpNjqfVSmJhLbPyr2i45lSwPU1")
+      .send :request_headers, "get", "https://eu.api.ovh.com/1.0/domains/", "")
+      .to eq(
+        {
+          "X-Ovh-Application" => "7kbG7Bk7S9Nt7ZSV",
+          "X-Ovh-Consumer" => "MtSwSrPpNjqfVSmJhLbPyr2i45lSwPU1",
+          "X-Ovh-Timestamp" => @timestamp.to_i.to_s,
+          "X-Ovh-Signature" => "$1$def8d1895aeedb730d595ea48120ffb43f67310c",
+          "Content-type" => "application/json"
+        }
+    ) }
   end
 end

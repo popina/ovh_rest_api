@@ -16,5 +16,18 @@ module OvhRestApi
       def request_signature method, url, body, timestamp
         "$1$" + Digest::SHA1.hexdigest("#{@api_secret}+#{@consumer_key}+#{method.upcase}+#{url}+#{body}+#{timestamp}")
       end
+      
+      def request_headers method, url, body
+        timestamp = Time.now.to_i.to_s
+        signature = request_signature method, url, body, timestamp
+
+        {
+          "X-Ovh-Application" => @api_key,
+          "X-Ovh-Consumer" => @consumer_key,
+          "X-Ovh-Timestamp" => timestamp,
+          "X-Ovh-Signature" => signature,
+          "Content-type" => "application/json"
+        }
+      end
   end
 end
