@@ -1,5 +1,5 @@
 module OvhRestApi
-  class OvhRestApi::ConsumerKey < OvhRestApi::Base
+  class ConsumerKey < Base
     
     def self.generate country, api_key, access_rules = nil
       access_rules ||= all_access_rules
