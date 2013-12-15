@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = OvhRestApi::VERSION
   spec.authors       = ["charlie"]
   spec.email         = ["charlie.eissen@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = "This is a gem to interact with OVH RESFTULL API 1.0"
+  spec.summary       = "This is a gem to interact with OVH RESFTULL API 1.0"
   spec.homepage      = ""
   spec.license       = "MIT"
 
