@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe OvhRestApi::Cdn::Dedicated do
-  let!(:api_instance){ OvhRestApi::Cdn::Dedicated.new :eu, "7kbG7Bk7S9Nt7ZSV", "EXEgWIz07P0HYwtQDs7cNIqCiQaWSuHF", "MtSwSrPpNjqfVSmJhLbPyr2i45lSwPU1" }
+  let!(:api_instance){ OvhRestApi::Base.new :eu, "7kbG7Bk7S9Nt7ZSV", "EXEgWIz07P0HYwtQDs7cNIqCiQaWSuHF", "MtSwSrPpNjqfVSmJhLbPyr2i45lSwPU1" }
   
   describe "#services" do
     before do

@@ -1,6 +1,6 @@
 module OvhRestApi
   module Cdn
-    class Dedicated < OvhRestApi::Base
+    module Dedicated
       def services
         get "/cdn/dedicated"
       end
