@@ -1,3 +1,19 @@
+module OvhRestApi
+  class << self
+    attr_accessor :configuration, :base
+  end
+  
+  class Configuration
+    attr_accessor :country, :api_key, :api_secret, :consumer_key
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield configuration if block_given?
+    OvhRestApi.base = OvhRestApi::Base.new configuration.country, configuration.api_key, configuration.api_secret, configuration.consumer_key
+  end
+end
+
 require "digest/sha1"
 require "uri"
 require "net/http"

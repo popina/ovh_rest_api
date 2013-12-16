@@ -3,7 +3,7 @@ require "spec_helper"
 describe OvhRestApi::Base do
   it { expect(OvhRestApi::Base.api_uri :eu).to eq("https://eu.api.ovh.com/1.0") }
   it { expect { OvhRestApi::Base.api_uri :fr }.to raise_exception(OvhRestApi::ForbiddenCountryException) }
-  
+
   context "when country, api key, api secret and consumer key are given for initialization" do
     before do
       @instance = OvhRestApi::Base.new(:fr, "api_key098765432", "api_secret1234567890", "consumer_key983458765")
