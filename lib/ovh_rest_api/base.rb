@@ -20,8 +20,8 @@ module OvhRestApi
         request.body = body
         http = Net::HTTP.new uri.host, uri.port
         http.use_ssl = true
-        response = http.request request          
-        raise RequestException unless response.is_a?(Net::HTTPSuccess)
+        response = http.request request
+        raise RequestException.new(response.code.to_i, response.message) unless response.is_a?(Net::HTTPSuccess)
         JSON.parse response.body
       end
     end

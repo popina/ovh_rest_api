@@ -6,8 +6,11 @@ module OvhRestApi
   end
   
   class RequestException < Exception
-    def initialize
-      super "only EU or CA are vailable for country code"
+    attr_reader :code, :description
+    def initialize code, message
+      @code = code
+      @description = message
+      super "request error : code #{code}, message : #{message}"
     end
   end
 end
