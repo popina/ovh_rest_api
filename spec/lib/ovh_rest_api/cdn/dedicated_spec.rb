@@ -65,4 +65,17 @@ describe OvhRestApi::Cdn::Dedicated do
       }
   end
   
+  describe "#delete_domain" do
+    before do
+      stub_request(:delete,"https://eu.api.ovh.com/1.0/cdn/dedicated/cdn-23.123.456.78-910/domains/host.newdomain.com")
+      .to_return status: 200, body: "{\"taskId\":22422450,\"function\":\"removeDomain\",\"comment\":null,\"status\":\"todo\"}"
+    end
+    
+    it { expect(api_instance.delete_domain "cdn-23.123.456.78-910", "host.newdomain.com")
+          .to eq(
+            {"taskId"=>22422450, "function"=>"removeDomain", "comment"=>nil, "status"=>"todo"}
+          )
+      }
+  end
+  
 end
