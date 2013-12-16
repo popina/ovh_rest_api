@@ -1,6 +1,7 @@
 # OvhRestApi
 
 This is a gem to interact with OVH RESFTULL API 1.0
+https://api.ovh.com
 
 ## Installation
 
