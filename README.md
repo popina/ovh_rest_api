@@ -19,7 +19,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    OvhRestApi.configure do |config|
+      config.country = :eu or :ca
+      config.api_key = "your_api_key"
+      config.api_secret = "your_api_secret_key"
+      config.consumer_key = "your_consumer_key"
+    end
+
+then you can access a configured instance of OvhRestApi::Base directly onto OvhRestApi module: 
+
+    OvhRestApi.base
+
+and use methods:
+
+    my_services = OvhRestApi.base.services
+    domains_on_service = OvhRestApi.base.domains my_services.first
+    ...
 
 ## Contributing
 
