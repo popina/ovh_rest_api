@@ -4,6 +4,10 @@ module OvhRestApi
       def services
         get "/cdn/dedicated"
       end
+
+      def service service_name
+        get "/cdn/dedicated/#{service_name}"
+      end
     end
   end
 end
