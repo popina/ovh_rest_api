@@ -12,6 +12,10 @@ module OvhRestApi
       def domains service_name
         get "/cdn/dedicated/#{service_name}/domains"
       end
+
+      def domain service_name, domain_name
+        get "/cdn/dedicated/#{service_name}/domains/#{domain_name}"
+      end
     end
   end
 end

@@ -37,4 +37,16 @@ describe OvhRestApi::Cdn::Dedicated do
     it { expect(api_instance.domains "cdn-23.123.456.78-910").to eq(['host.domain1.com', 'host2.domain1.com'])}
   end
   
+  describe "#domain" do
+    before do
+      stub_request(:get, "https://eu.api.ovh.com/1.0/cdn/dedicated/cdn-23.123.456.78-910/domains/host.domain1.com").to_return status: 200, body: "{\"cacheRuleUse\":3,\"domain\":\"host.domain1.com\",\"status\":\"off\",\"type\":\"plain\",\"cname\":\"assets.host.it.web.cdn.anycast.me\"}"
+    end
+    
+    it { expect(api_instance.domain "cdn-23.123.456.78-910", "host.domain1.com")
+          .to eq(
+            {"cacheRuleUse"=>3, "domain"=>"host.domain1.com", "status"=>"off", "type"=>"plain", "cname"=>"assets.host.it.web.cdn.anycast.me"}
+          )
+      }
+  end
+  
 end
