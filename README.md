@@ -38,7 +38,8 @@ and use methods:
     
 ## Todo
 
-add others modules (which is really easy based on dedicated)
+1. add others modules (which is really easy based on dedicated)
+2. implement a true object model (domain_instance_.delete, Service.create...)
 
 ## Contributing
 
