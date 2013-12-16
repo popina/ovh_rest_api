@@ -35,6 +35,10 @@ and use methods:
     my_services = OvhRestApi.base.services
     domains_on_service = OvhRestApi.base.domains my_services.first
     ...
+    
+## Todo
+
+add others modules (which is really easy based on dedicated)
 
 ## Contributing
 
