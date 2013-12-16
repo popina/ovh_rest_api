@@ -1,5 +1,6 @@
 module OvhRestApi
   class Base
+    include OvhRestApi::ConsumerKey
     include OvhRestApi::Cdn::Dedicated
     attr_accessor :country, :api_key, :api_secret, :consumer_key
 
