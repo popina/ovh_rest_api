@@ -11,12 +11,30 @@ describe OvhRestApi::Cdn::Dedicated do
     it { expect(api_instance.services).to eq(['cdn-23.123.456.78-910'])}
   end
   
-  describe "#services" do
+  describe "#service" do
     before do
-      stub_request(:get, "https://eu.api.ovh.com/1.0/cdn/dedicated/cdn-23.123.456.78-910").to_return status: 200, body: "[\"host.domain1.com\",\"host2.domain1.com\"]"
+      stub_request(:get, "https://eu.api.ovh.com/1.0/cdn/dedicated/cdn-23.123.456.78-910").to_return status: 200, body: "{\"quota\":58059979796005,\"backendUse\":2,\"lastQuotaOrder\":\"2013-08-16T09:56:04+02:00\",\"offer\":\"classic.2013v1\",\"anycast\":\"11.123.456.78\",\"backendLimit\":10,\"service\":\"cdn-11.123.456.78-656\",\"cacheRuleLimitPerDomain\":10}"
     end
     
-    it { expect(api_instance.service "cdn-23.123.456.78-910").to eq(['host.domain1.com', 'host2.domain1.com'])}
+    it { expect(api_instance.service "cdn-23.123.456.78-910")
+          .to eq({
+            "quota"=>58059979796005,
+            "backendUse"=>2, 
+            "lastQuotaOrder"=>"2013-08-16T09:56:04+02:00", 
+            "offer"=>"classic.2013v1", 
+            "anycast"=>"11.123.456.78", 
+            "backendLimit"=>10, 
+            "service"=>"cdn-11.123.456.78-656", 
+            "cacheRuleLimitPerDomain"=>10
+            } )}
+  end
+  
+  describe "#domains" do
+    before do
+      stub_request(:get, "https://eu.api.ovh.com/1.0/cdn/dedicated/cdn-23.123.456.78-910/domains").to_return status: 200, body: "[\"host.domain1.com\",\"host2.domain1.com\"]"
+    end
+    
+    it { expect(api_instance.domains "cdn-23.123.456.78-910").to eq(['host.domain1.com', 'host2.domain1.com'])}
   end
   
 end
