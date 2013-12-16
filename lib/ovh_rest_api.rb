@@ -1,6 +1,3 @@
-module OvhRestApi
-end
-
 require "digest/sha1"
 require "uri"
 require "net/http"
