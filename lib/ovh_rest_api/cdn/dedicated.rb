@@ -24,6 +24,10 @@ module OvhRestApi
       def delete_domain service_name, domain_name
         delete "/cdn/dedicated/#{service_name}/domains/#{domain_name}"
       end
+      
+      def cdn_dedicated_domain_statistics service_name, domain_name, period, type, value
+        get "/cdn/dedicated/#{service_name}/domains/#{domain_name}/statistics?period=#{period}&type=#{type}&value=#{value}"
+      end
 
     end
   end

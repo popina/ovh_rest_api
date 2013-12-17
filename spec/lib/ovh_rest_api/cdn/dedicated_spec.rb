@@ -78,4 +78,17 @@ describe OvhRestApi::Cdn::Dedicated do
       }
   end
   
+  describe "#cdn_dedicated_domain_statistics" do
+    before do
+      stub_request(:get, "https://eu.api.ovh.com/1.0/cdn/dedicated/cdn-23.123.456.78-910/domains/host.newdomain.com/statistics?period=month&type=cdn&value=bandwith")
+      .to_return(:status => 200, :body => '[{"date":"2013-12-16T01:00:00+01:00","value":0}]', :headers => {})
+    end
+    
+    it { expect(api_instance.cdn_dedicated_domain_statistics "cdn-23.123.456.78-910", "host.newdomain.com", :month, :cdn, :bandwith)
+          .to eq(
+            [{"date"=>"2013-12-16T01:00:00+01:00", "value"=>0}]
+          )
+      }
+  end
+  
 end
