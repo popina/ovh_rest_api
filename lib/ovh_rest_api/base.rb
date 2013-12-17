@@ -16,9 +16,10 @@ module OvhRestApi
 
         headers = request_headers method, url, body
 
-        request = Net::HTTP.const_get(method.capitalize).new(uri.path, headers)
+        request = Net::HTTP.const_get(method.capitalize).new(uri.request_uri, headers)
         request.body = body
         http = Net::HTTP.new uri.host, uri.port
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         http.use_ssl = true
         response = http.request request
         raise RequestException.new(response.code.to_i, response.message) unless response.is_a?(Net::HTTPSuccess)
