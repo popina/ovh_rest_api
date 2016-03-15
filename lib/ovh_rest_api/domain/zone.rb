@@ -18,7 +18,7 @@ module OvhRestApi
       end
 
       def create_record zone_name, subdomain
-        post "/domain/zone/#{service_name}/record", {
+        post "/domain/zone/#{zone_name}/record", {
           fieldType: "A",
           subDomain: subdomain,
           target: "213.186.33.4",
@@ -27,7 +27,7 @@ module OvhRestApi
       end
 
       def delete_record zone_name, subdomain
-        delete "/domain/zone/#{service_name}/record/#{subdomain}"
+        delete "/domain/zone/#{zone_name}/record/#{subdomain}"
       end
     end
   end
