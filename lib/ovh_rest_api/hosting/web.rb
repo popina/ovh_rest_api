@@ -18,7 +18,7 @@ module OvhRestApi
       end
 
       def create_subdomain service_name, path
-        post "/hosting/web/#{service_name}/attachedDomain", { domain: path+"."+domain_name, path: path, firewall: "none", ssl: false }
+        post "/hosting/web/#{service_name}/attachedDomain", { domain: path+"."+service_name, path: path, firewall: "none", ssl: false }
       end
 
       def delete_subdomain service_name, domain_name
