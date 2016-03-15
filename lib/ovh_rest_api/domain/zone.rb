@@ -13,8 +13,8 @@ module OvhRestApi
         get "/domain/zone/#{zone_name}/record?fieldType=A"
       end
 
-      def record zone_name, id
-        get "/domain/zone/#{zone_name}/record/#{id}"
+      def record zone_name, subdomain
+        get "/domain/zone/#{zone_name}/record?fieldType=A&subDomain=#{subdomain}"
       end
 
       def create_record zone_name, subdomain
