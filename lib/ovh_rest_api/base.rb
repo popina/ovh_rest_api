@@ -2,6 +2,7 @@ module OvhRestApi
   class Base
     include OvhRestApi::ConsumerKey
     include OvhRestApi::Cdn::Dedicated
+    include OvhRestApi::Hosting::Web
     attr_accessor :country, :api_key, :api_secret, :consumer_key
 
     def initialize country, api_key, api_secret, consumer_key
