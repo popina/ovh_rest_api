@@ -24,6 +24,7 @@ module OvhRestApi
           target: "213.186.33.4",
           ttl: 0
         }
+        post "/domain/zone/#{zone_name}/refresh"
       end
 
       def delete_record zone_name, subdomain
